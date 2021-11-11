@@ -19,3 +19,4 @@ The Factory Function is called `FruitBasket` and should allow for the following:
 A fruit baskets should be stored in PostgreSQL table called `fruit_basket`.
 
 Create tests for your function and deploy your tests to Travis.
+[![Build Status](https://app.travis-ci.com/Cekiso/fruits_basket.svg?branch=main)](https://app.travis-ci.com/Cekiso/fruits_basket)

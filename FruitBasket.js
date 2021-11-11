@@ -3,14 +3,11 @@ module.exports = function fruits(pool) {
 
     async function InsertValuesbasket(fruitName, quantity, price, basket) {
         let values = await pool.query(`select * from baskets where fruit_name = $1 and basket = $2  `, [fruitName, basket]);
-        // values = values.rows;
         if (values.rowCount == 0) {
             await pool.query(`insert into baskets (fruit_name , quantity , price , basket) values ($1 , $2 , $3 , $4 )`, [fruitName, quantity, price, basket]);
             return 'added';
         }
-        // } else {
-        //     await pool.query(`update baskets set price = price +1 , quantity = quantity +1 where fruit_name = $1`, [fruitName]);
-        // }
+
     }
 
     //on the get f get all everyhing that is stored in the database 
@@ -33,7 +30,7 @@ module.exports = function fruits(pool) {
         let updates = await pool.query(`select quantity from baskets where basket = $1 and fruit_name = $2 `, [basket, fruit_name])
         if (updates.rowCount !== 0) {
             await pool.query(`update baskets set quantity = $1 where basket = $2 and fruit_name = $3 `, [quantity, basket, fruit_name])
-            return 'updated';
+            return updates.rows;
         }
 
     }

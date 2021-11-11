@@ -29,7 +29,6 @@ describe('The fruits basket', async function() {
         let tst = await fruits.InsertValuesbasket("Apple", 2, 2, 'G');
         await fruits.InsertValuesbasket("Orange", 1, 2, 'B');
         await fruits.InsertValuesbasket("Banana", 2, 3, 'A');
-        // await fruits.InsertValuesbasket("Banana", 2, 3, 'k');
 
 
         assert.deepEqual(await fruits.GetAll(),
@@ -91,7 +90,7 @@ describe('The fruits basket', async function() {
     it('should be able to find the fruit basket for a given fruit type', async function() {
         let fruits = baskets(pool);
 
-        await fruits.FruitType('Banana');
+
         assert.deepEqual([{
                 basket: 'B'
             }],
@@ -103,7 +102,9 @@ describe('The fruits basket', async function() {
 
         let update = await fruits.UpdateFruitQuantity(10, 'B', 'Banana');
 
-        assert.deepEqual('updated', update)
+        assert.deepEqual([{
+            quantity: 2
+        }], update)
     });
     it('should return a total price for a given basket', async function() {
         let fruits = baskets(pool);
