@@ -2,7 +2,7 @@ module.exports = function fruits(pool) {
 
 
     async function InsertValuesbasket(fruitName, quantity, price, basket) {
-        await pool.query(`insert into baskets (fruit_name , quantity , price , basket) values ($1 , $2 , $3 , $4 )`, [fruitName, quantity, price, basket]);
+        await pool.query(`insert into baskets (fruit_name, quantity, price, basket) values ($1 , $2 , $3 , $4 )`, [fruitName, quantity, price, basket]);
 
     }
 
@@ -21,11 +21,8 @@ module.exports = function fruits(pool) {
 
     }
     // a function that update the fruits in the basket
-    async function UpdateFruitQuantity(quantity, basket, fruit_name) {
-        let updates = await pool.query(`select quantity from baskets where basket = $1 and fruit_name = $2 `, [basket, fruit_name])
-        await pool.query(`update baskets set quantity = $1 where basket = $2 and fruit_name = $3 `, [quantity, basket, fruit_name])
-        return updates.rows;
-
+    async function UpdateFruitQuantity(fruit_name, qty) {
+        await pool.query(`update baskets set quantity = quantity + $2 where fruit_name = $1 `, [fruit_name, qty])
 
     }
     //The total price for a given fruit
