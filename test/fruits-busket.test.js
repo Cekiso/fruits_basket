@@ -26,7 +26,7 @@ describe('The fruits basket', async function() {
     it('should be able to add new fruit basket for a given fruit type, qty & fruit price', async function() {
         let fruits = baskets(pool);
 
-        let tst = await fruits.InsertValuesbasket("Apple", 2, 2, 'G');
+        await fruits.InsertValuesbasket("Apple", 2, 2, 'G');
         await fruits.InsertValuesbasket("Orange", 1, 2, 'B');
         await fruits.InsertValuesbasket("Banana", 2, 3, 'A');
 
